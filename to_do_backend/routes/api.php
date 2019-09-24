@@ -31,8 +31,11 @@ Route::group([
     Route::post('register', 'AuthController@register');
 });
 
-Route::group([
-    'middleware' => 'api'
-], function($router) {
+// Route::group([
+//     'middleware' => 'api'
+// ], function($router) {
+//     Route::resource('todos', 'TodosController');
+// });
+Route::group(['middleware' => ['jwt.verify']], function() {
     Route::resource('todos', 'TodosController');
 });

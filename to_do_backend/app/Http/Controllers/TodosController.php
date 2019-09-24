@@ -70,8 +70,8 @@ class TodosController extends Controller
      * @param  \App\Models\TodoItem  $todoItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoItem $todoItem)
+    public function destroy($todoItem)
     {
-        //
+        return $this->todosService->removeTodo($todoItem);
     }
 }

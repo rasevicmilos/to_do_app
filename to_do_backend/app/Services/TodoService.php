@@ -19,7 +19,7 @@ class TodoService
 
     public function createTodo($data)
     {
-        TodoItem::create([
+        $todoItem = TodoItem::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'priority' => $data['priority'],
@@ -27,7 +27,7 @@ class TodoService
             'user_id' => auth()->user()->id
         ]);
 
-        return 'Successfully created';
+        return $todoItem;
     }
 
     public function editTodo($data, $id) {
@@ -41,6 +41,14 @@ class TodoService
 
         $todoItem->save();
         
+        return $todoItem;
+    }
+
+    public function removeTodo($todoId) {
+        $todoItem = TodoItem::findOrFail($todoId);
+        
+        $todoItem->delete();
+
         return $todoItem;
     }
 }
