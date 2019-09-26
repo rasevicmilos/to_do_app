@@ -7,6 +7,7 @@ import TodoList from './components/TodoList';
 import ProtectedRoute from './components/ProtectedRoute';
 import { connect } from 'react-redux';
 import NonAuthenticatedRoute from './components/NonAuthenticatedRoute';
+import TodoItem from './components/TodoItem';
 
 class App extends Component {
   render(){
@@ -29,6 +30,12 @@ class App extends Component {
               path='/'
               user={this.props.user}
               component={TodoList}>
+            </ProtectedRoute>
+            <ProtectedRoute 
+              exact 
+              path='/todo/:id'
+              user={this.props.user}
+              component={TodoItem}>
             </ProtectedRoute>
           </Router>
       </div>

@@ -4,17 +4,24 @@ import { connect } from 'react-redux';
 import { fetchTodos } from '../store/todos/actionCreators';
 
 class TodoList extends Component {
-    
+    constructor() {
+        super();
+
+        this.showTodo = this.showTodo.bind(this);
+    }
     componentDidMount() {
         this.props.fetchTodos();
     }
+    showTodo(todoId) {
+        this.props.history.push('/todo/' + todoId);
+    }
     render() {
         const todoList = this.props.todos;
-        console.log(this.props);
         var todos = 'No todos!';
         if (todoList.length != 0){
             todos = todoList.map(todo =>
-                <li className="list-group-item" key={todo.id}>{todo.title}</li>
+                // <Link className="list-group-item" to={'/todo/' + todo.id}>{todo.title}</Link>
+                <li className="list-group-item" key={todo.id} onClick={() => this.showTodo(todo.id)}>{todo.title}</li>
             );
         }
         return (
