@@ -6,6 +6,7 @@ export default function* rootSaga() {
     yield all([
         userSagas.logInActionWatcher(),
         userSagas.logOutActionWatcher(),
-        todosSagas.fetchTodosActionWatcher()
+        todosSagas.fetchTodosActionWatcher(),
+        todosSagas.createTodoActionWatcher()
     ]);
 }

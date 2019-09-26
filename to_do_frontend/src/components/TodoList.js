@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodosApiService from '../apiServices/TodosApiService';
 import { connect } from 'react-redux';
 import { fetchTodos } from '../store/todos/actionCreators';
+import AddDialog from '../components/AddDialog';
 
 class TodoList extends Component {
     constructor() {
@@ -26,7 +27,9 @@ class TodoList extends Component {
         }
         return (
             <div className="container mt-3">
-                <ul className="list-group">
+                {/* <button className="btn btn-primary mb-3">Add a new todo</button> */}
+                <AddDialog/>
+                <ul className="list-group mt-3">
                     {todos}
                 </ul>
             </div>

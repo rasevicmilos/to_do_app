@@ -10,9 +10,10 @@ class TodosApiService extends BaseApiService {
         return this.api.get(ENDPOINTS.TODOS);
     }
 
-    // createTodo(data) {
-    //     this.api.post(ENDPOINTS.TODOS, data);
-    // }
+    createTodo(data) {
+        console.log(data);
+        return this.api.post(ENDPOINTS.TODOS, data);
+    }
 
     // updateTodo(todoId, data) {
     //     this.api.put(ENDPOINTS.TODO.replace('{id}', todoId), data);
