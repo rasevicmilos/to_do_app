@@ -7,6 +7,7 @@ export default function* rootSaga() {
         userSagas.logInActionWatcher(),
         userSagas.logOutActionWatcher(),
         todosSagas.fetchTodosActionWatcher(),
-        todosSagas.createTodoActionWatcher()
+        todosSagas.createTodoActionWatcher(),
+        todosSagas.deleteTodoActionWatcher()
     ]);
 }

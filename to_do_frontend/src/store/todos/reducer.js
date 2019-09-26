@@ -1,4 +1,4 @@
-import {SET_TODOS, ADD_TODO} from './actionTypes';
+import {SET_TODOS, ADD_TODO, REMOVE_TODO} from './actionTypes';
 import {LOGGED_OUT} from '../user/actionTypes';
 
 const initialState = [];
@@ -14,6 +14,10 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 action.payload
             ]
+        case REMOVE_TODO:
+            const newState = state.filter(todo => todo.id !== action.payload.id);
+            console.log(newState);
+            return newState;
         default:
             return state;
     }

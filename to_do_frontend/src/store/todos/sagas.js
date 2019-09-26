@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import TodosApiService from '../../apiServices/TodosApiService';
-import { setTodos, addTodo } from './actionCreators';
-import { FETCH_TODOS, CREATE_TODO } from './actionTypes';
+import { setTodos, addTodo, removeTodo } from './actionCreators';
+import { FETCH_TODOS, CREATE_TODO, DELETE_TODO } from './actionTypes';
 
 function* fetchTodos() {
     const todos = yield TodosApiService.getAll().then(({ data }) => data);
@@ -24,4 +24,13 @@ function* createTodo(action) {
 
 export function* createTodoActionWatcher() {
     yield takeLatest(CREATE_TODO, createTodo);
+}
+
+function* deleteTodo(action) {
+    const todo = yield TodosApiService.deleteTodo(action.payload).then(({ data }) => data);
+    yield put(removeTodo(todo));
+}
+
+export function* deleteTodoActionWatcher() {
+    yield takeLatest(DELETE_TODO, deleteTodo);
 }

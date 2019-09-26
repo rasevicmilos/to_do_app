@@ -11,7 +11,6 @@ class TodosApiService extends BaseApiService {
     }
 
     createTodo(data) {
-        console.log(data);
         return this.api.post(ENDPOINTS.TODOS, data);
     }
 
@@ -19,8 +18,10 @@ class TodosApiService extends BaseApiService {
     //     this.api.put(ENDPOINTS.TODO.replace('{id}', todoId), data);
     // }
 
-    // deleteTodo(todoId) {}
-
+    deleteTodo(todoId) {
+        console.log(todoId);
+        return this.api.delete(ENDPOINTS.TODO.replace('{id}', todoId))
+    }
 }
 
 const todosApiService = new TodosApiService();
