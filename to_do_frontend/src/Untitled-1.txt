@@ -1,0 +1,22 @@
+store
+    action creators
+        usersactions
+        todos actions
+        boards actions
+
+    action types
+    reducers
+    sagas
+    index.js 
+
+
+store
+    users
+        actionCreators
+            const action = (param1, param2) => ({ type: ACTION_TYPE, payload: {param1, para2}})
+        actionTypes
+            const LOG_IN = "users/LOG_IN"
+        sagas
+            function* login() {}
+            function* watchLogin() { takeLatest() }
+

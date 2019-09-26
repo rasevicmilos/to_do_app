@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import RegistrationPage from './components/RegistrationPage';
+import LoginPage from './components/LoginPage';
+import TodoList from './components/TodoList';
+import ProtectedRoute from './components/ProtectedRoute';
+import { connect } from 'react-redux';
+import NonAuthenticatedRoute from './components/NonAuthenticatedRoute';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render(){
+    return (
+      <div className="App">
+          <Router>
+            <Navbar></Navbar>
+            <NonAuthenticatedRoute 
+              path='/login' 
+              component={LoginPage}
+              user={this.props.user}>
+            </NonAuthenticatedRoute>
+            <NonAuthenticatedRoute 
+              path='/register' 
+              component={RegistrationPage}
+              user={this.props.user}>
+            </NonAuthenticatedRoute>
+            <ProtectedRoute 
+              exact 
+              path='/'
+              user={this.props.user}
+              component={TodoList}>
+            </ProtectedRoute>
+          </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(App);
+
