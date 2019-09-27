@@ -11,7 +11,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { editTodo } from '../store/todos/actionCreators';
 import InputLabel from '@material-ui/core/InputLabel';
 
-
 const priorities = {1: 'Low', 2: 'Medium', 3: 'High'};
 
 class TodoItem extends Component {

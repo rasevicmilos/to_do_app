@@ -18,7 +18,7 @@ class Navbar extends Component {
         const user = this.props.user;
         return (  
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/">Todos</Link>
+                <Link className="navbar-brand" to="/home">Todos</Link>
                 <div className="">
                     {!user ? (
                         <ul className="navbar-nav mr-auto">
@@ -32,7 +32,7 @@ class Navbar extends Component {
                     ) : (
                         <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to='/login' onClick={this.logOut}>Logout</Link>
+                            <button className="nav-link" onClick={this.logOut}>Logout</button>
                         </li>
                         </ul>
                     )}

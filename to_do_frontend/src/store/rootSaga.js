@@ -10,6 +10,7 @@ export default function* rootSaga() {
         todosSagas.createTodoActionWatcher(),
         todosSagas.deleteTodoActionWatcher(),
         todosSagas.editTodoActionWatcher(),
-        todosSagas.finishTodoActionWatcher()
+        todosSagas.finishTodoActionWatcher(),
+        userSagas.getUserActionWatcher()
     ]);
 }

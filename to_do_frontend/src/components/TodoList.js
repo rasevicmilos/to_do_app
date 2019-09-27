@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchTodos, deleteTodo, finishTodo } from '../store/todos/actionCreators';
 import AddDialog from '../components/AddDialog';
 import { Checkbox } from '@material-ui/core';
+import { withRouter } from 'react-router-dom'
 
 class TodoList extends Component {
     constructor() {
@@ -85,4 +86,4 @@ const mapDispatchToProps = {
     finishTodo: finishTodo
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoList))

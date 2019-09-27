@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RegistrationPage from './components/RegistrationPage';
 import LoginPage from './components/LoginPage';
-import TodoList from './components/TodoList';
+import HomePage from './components/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { connect } from 'react-redux';
 import NonAuthenticatedRoute from './components/NonAuthenticatedRoute';
@@ -18,23 +18,23 @@ class App extends Component {
             <NonAuthenticatedRoute 
               path='/login' 
               component={LoginPage}
-              user={this.props.user}>
+              token={localStorage.getItem('access_token')}>
             </NonAuthenticatedRoute>
             <NonAuthenticatedRoute 
               path='/register' 
               component={RegistrationPage}
-              user={this.props.user}>
+              token={localStorage.getItem('access_token')}>
             </NonAuthenticatedRoute>
             <ProtectedRoute 
               exact 
-              path='/'
-              user={this.props.user}
-              component={TodoList}>
+              path='/home'
+              token={localStorage.getItem('access_token')}
+              component={HomePage}>
             </ProtectedRoute>
             <ProtectedRoute 
               exact 
               path='/todo/:id'
-              user={this.props.user}
+              token={localStorage.getItem('access_token')}
               component={TodoItem}>
             </ProtectedRoute>
           </Router>
