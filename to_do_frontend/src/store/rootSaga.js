@@ -8,6 +8,8 @@ export default function* rootSaga() {
         userSagas.logOutActionWatcher(),
         todosSagas.fetchTodosActionWatcher(),
         todosSagas.createTodoActionWatcher(),
-        todosSagas.deleteTodoActionWatcher()
+        todosSagas.deleteTodoActionWatcher(),
+        todosSagas.editTodoActionWatcher(),
+        todosSagas.finishTodoActionWatcher()
     ]);
 }

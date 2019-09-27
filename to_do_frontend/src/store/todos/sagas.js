@@ -1,15 +1,16 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import TodosApiService from '../../apiServices/TodosApiService';
-import { setTodos, addTodo, removeTodo } from './actionCreators';
-import { FETCH_TODOS, CREATE_TODO, DELETE_TODO } from './actionTypes';
+import { fetchTodos, setTodos, addTodo, removeTodo, setEdited, setFinished} from './actionCreators';
+import { FETCH_TODOS, CREATE_TODO, DELETE_TODO, EDIT_TODO , FINISH_TODO} from './actionTypes';
 
-function* fetchTodos() {
+
+function* getAllTodos() {
     const todos = yield TodosApiService.getAll().then(({ data }) => data);
     yield put(setTodos(todos));
 }
 
 export function* fetchTodosActionWatcher() {
-    yield takeLatest(FETCH_TODOS, fetchTodos);
+    yield takeLatest(FETCH_TODOS, getAllTodos);
 }
 
 function* createTodo(action) {
@@ -33,4 +34,28 @@ function* deleteTodo(action) {
 
 export function* deleteTodoActionWatcher() {
     yield takeLatest(DELETE_TODO, deleteTodo);
+}
+
+function* editTodo(action) {
+    const todo = yield TodosApiService.updateTodo(action.payload).then(({ data }) => data);
+    yield put(setEdited(todo));
+    yield action.caller.componentDidMount();
+}
+
+export function* editTodoActionWatcher() {
+    yield takeLatest(EDIT_TODO, editTodo);
+}
+
+function* finishTodo(action) {
+    try {
+        const todo = yield TodosApiService.updateTodo(action.payload).then(({ data }) => data);
+        yield put(setFinished(todo));
+        yield put(fetchTodos());
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function* finishTodoActionWatcher() {
+    yield takeLatest(FINISH_TODO, finishTodo);
 }

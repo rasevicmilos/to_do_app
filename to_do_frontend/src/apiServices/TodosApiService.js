@@ -14,12 +14,12 @@ class TodosApiService extends BaseApiService {
         return this.api.post(ENDPOINTS.TODOS, data);
     }
 
-    // updateTodo(todoId, data) {
-    //     this.api.put(ENDPOINTS.TODO.replace('{id}', todoId), data);
-    // }
+    updateTodo(data) {
+        console.log(data);
+        return this.api.put(ENDPOINTS.TODO.replace('{id}', data.id), data);
+    }
 
     deleteTodo(todoId) {
-        console.log(todoId);
         return this.api.delete(ENDPOINTS.TODO.replace('{id}', todoId))
     }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import TodosApiService from '../apiServices/TodosApiService';
 import { connect } from 'react-redux';
-import { fetchTodos, deleteTodo } from '../store/todos/actionCreators';
+import { fetchTodos, deleteTodo, finishTodo } from '../store/todos/actionCreators';
 import AddDialog from '../components/AddDialog';
+import { Checkbox } from '@material-ui/core';
 
 class TodoList extends Component {
     constructor() {
@@ -10,6 +11,7 @@ class TodoList extends Component {
 
         this.showTodo = this.showTodo.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleChangeComplete = this.handleChangeComplete.bind(this);
     }
     componentDidMount() {
         this.props.fetchTodos();
@@ -20,6 +22,10 @@ class TodoList extends Component {
     handleDelete(todoId) {
         this.props.deleteTodo(todoId);
     }
+    handleChangeComplete(todo, completed) {
+        todo.completed = !completed;
+        this.props.finishTodo(todo);
+    }
     render() {
         const todoList = this.props.todos;
         var todos = 'No todos!';
@@ -27,11 +33,18 @@ class TodoList extends Component {
             todos = todoList.map(todo =>
                 // <Link className="list-group-item" to={'/todo/' + todo.id}>{todo.title}</Link>
                 <li 
-                className="list-group-item" 
+                className={todo.completed == 0 ? ("list-group-item") : ("list-group-item text-muted bg-light")}
                 key={todo.id} 
                 >
                 <div className="container">
-                    <div className="row">
+                    <div className="row" >
+                        <div className="col col-md-1">
+                        <Checkbox
+                            checked={todo.completed == 1 ? true : false}
+                            onChange={() => this.handleChangeComplete(todo, todo.completed)}
+                            color="primary"
+                        />
+                        </div>
                         <div className="col"
                         onClick={() => this.showTodo(todo.id)}
                         >
@@ -71,7 +84,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchTodos: fetchTodos,
-    deleteTodo: deleteTodo
+    deleteTodo: deleteTodo,
+    finishTodo: finishTodo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
