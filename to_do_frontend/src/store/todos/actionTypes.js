@@ -7,4 +7,3 @@ export const REMOVE_TODO = 'todos/REMOVE_TODO';
 export const EDIT_TODO = 'todos/EDIT_TODO';
 export const SET_EDITED = 'todos/SET_EDITED';
 export const FINISH_TODO = 'todos/FINISH_TODO';
-export const SET_FINISHED = 'todos/SET_FINISHED';

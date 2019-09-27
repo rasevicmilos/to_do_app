@@ -27,7 +27,6 @@ class TodoItem extends Component {
             priority: 1,
             newPriority: 1,
             completed: 0,
-            // newCompleted: 0,
             titleEmpty: false,
             descriptionEmpty: false
         }
@@ -51,7 +50,6 @@ class TodoItem extends Component {
             priority: todo.priority,
             newPriority: todo.priority,
             completed: todo.completed,
-            // newCompleted: todo.completed
         });
     }
     isEmptyOrSpaces(str){
@@ -67,7 +65,6 @@ class TodoItem extends Component {
         this.setState({
             newDescription: this.state.description,
             newTitle: this.state.title,
-            // newCompleted: this.state.completed,
             newPriority: this.state.priority,
             titleEmpty: false,
             descriptionEmpty: false
@@ -88,7 +85,6 @@ class TodoItem extends Component {
             title: this.state.newTitle,
             description: this.state.newDescription,
             priority: this.state.newPriority,
-            // completed: this.state.newCompleted
         }
         if(this.isEmptyOrSpaces(newTodo.title) || this.isEmptyOrSpaces(newTodo.description)) {
             this.setState({
@@ -99,12 +95,6 @@ class TodoItem extends Component {
             this.props.editTodo(newTodo, this);
             this.handleClose();
         }
-    }
-    handleCompletedChange(e) {
-        var checked = e.target.value ? true : false;
-        this.setState({
-            [e.target.name]: checked
-        });
     }
     render() {
         return (
@@ -171,16 +161,6 @@ class TodoItem extends Component {
                             <option key={2} value={2}>MEDIUM</option>
                             <option key={3} value={3}>HIGH</option>
                         </select>                        
-                        {/* <InputLabel className="mt-3" htmlFor="newCompleted">Completed</InputLabel> */}
-                        {/* <select 
-                        name="newCompleted" 
-                        onChange={this.handleChange} 
-                        className="completed"
-                        value={this.state.newCompleted}
-                        >
-                            <option key={1} value={1}>COMPLETED</option>
-                            <option key={0} value={0}>NOT COMPLETED</option>
-                        </select>            */}
                         </DialogContent>
                         <DialogActions>
                         <Button onClick={this.handleClose} color="primary">

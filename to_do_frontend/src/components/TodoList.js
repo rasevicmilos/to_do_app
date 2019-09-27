@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TodosApiService from '../apiServices/TodosApiService';
 import { connect } from 'react-redux';
 import { fetchTodos, deleteTodo, finishTodo } from '../store/todos/actionCreators';
 import AddDialog from '../components/AddDialog';
@@ -31,7 +30,6 @@ class TodoList extends Component {
         var todos = 'No todos!';
         if (todoList.length != 0){
             todos = todoList.map(todo =>
-                // <Link className="list-group-item" to={'/todo/' + todo.id}>{todo.title}</Link>
                 <li 
                 className={todo.completed == 0 ? ("list-group-item") : ("list-group-item text-muted bg-light")}
                 key={todo.id} 
@@ -68,7 +66,6 @@ class TodoList extends Component {
         }
         return (
             <div className="container mt-3">
-                {/* <button className="btn btn-primary mb-3">Add a new todo</button> */}
                 <AddDialog/>
                 <ul className="list-group mt-3">
                     {todos}

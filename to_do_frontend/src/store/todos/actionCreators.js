@@ -1,4 +1,4 @@
-import {FETCH_TODOS, SET_TODOS, CREATE_TODO, ADD_TODO, DELETE_TODO, REMOVE_TODO, EDIT_TODO, SET_EDITED, FINISH_TODO, SET_FINISHED} from './actionTypes';
+import {FETCH_TODOS, SET_TODOS, CREATE_TODO, ADD_TODO, DELETE_TODO, REMOVE_TODO, EDIT_TODO, SET_EDITED, FINISH_TODO} from './actionTypes';
 
 export const fetchTodos = () => ({
     type: FETCH_TODOS
@@ -40,10 +40,9 @@ export const setEdited = (todo) => ({
     payload: todo
 })
 
-export const finishTodo = (todo, caller) => ({
+export const finishTodo = (todo) => ({
     type: FINISH_TODO,
     payload: todo,
-    caller: caller
 })
 
 export const setFinished = (todo) => ({

@@ -32,7 +32,6 @@ class Navbar extends Component {
                     ) : (
                         <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                        {/* <a className="nav-link" href="" tabindex="-1" aria-disabled="true">Logout</a> */}
                             <Link className="nav-link" to='/login' onClick={this.logOut}>Logout</Link>
                         </li>
                         </ul>
