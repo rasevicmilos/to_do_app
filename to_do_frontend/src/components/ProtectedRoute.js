@@ -6,7 +6,6 @@ export default function ProtectedRoute ({ component: Component, token, ...rest }
     <Route
       { ...rest }
       render={props => {
-        console.log(token);
         return token ? (
           <Component { ...props } />
         ) : (

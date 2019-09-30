@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LoginApiService from '../apiServices/LoginApiService';
 import { logOut } from '../store/user/actionCreators';
 import { connect } from 'react-redux';
 
@@ -11,7 +10,6 @@ class Navbar extends Component {
         this.logOut = this.logOut.bind(this);
     }
     logOut() {
-        console.log(this.props);
         this.props.logOut();
     }
     render() {
@@ -19,8 +17,8 @@ class Navbar extends Component {
         return (  
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link className="navbar-brand" to="/home">Todos</Link>
-                <div className="">
                     {!user ? (
+                        <div>
                         <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login <span className="sr-only">(current)</span></Link>
@@ -29,14 +27,19 @@ class Navbar extends Component {
                             <Link className="nav-link" to="/register">Sign up</Link>
                         </li>
                         </ul>
+                        </div>
                     ) : (
+                        <div className="collapse navbar-collapse">
                         <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <button className="nav-link" onClick={this.logOut}>Logout</button>
+                            <button className="btn btn-outline-light" onClick={this.logOut}>Logout</button>
                         </li>
                         </ul>
+                        <span className="navbar-brand">
+                            User: {user.name}                        
+                        </span>
+                        </div>
                     )}
-                </div>
             </nav>
         )
     }

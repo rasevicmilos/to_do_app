@@ -1,20 +1,14 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import LoginApiService from '../../apiServices/LoginApiService';
-import { LOG_IN, LOG_OUT, LOG_ME_IN, SET_TOKEN } from './actionTypes'
-import { loggedIn, loggedOut, setUser} from './actionCreators';
+import { LOG_IN, LOG_OUT, LOG_ME_IN } from './actionTypes'
+import { loggedOut, setUser} from './actionCreators';
 
 function* logIn(action) {
     try {
         const token = yield LoginApiService.login(action.payload)
             .then(response => {
                 return response.data.access_token;
-                // let token = response.data.access_token;
-                // this.setAuthorizationHeader(token);
-            });
-                    //  let newUser = action.payload;
-                    //  return newUser;
-                    // localStorage.setItem('access_token', response.data.)
-                //   });
+               });
         localStorage.setItem('access_token', token);
         yield getUser();
     }

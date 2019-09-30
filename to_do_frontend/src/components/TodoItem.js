@@ -104,7 +104,7 @@ class TodoItem extends Component {
                             <h5 className="card-title">{ this.state.title } </h5>
                             <p className="card-text"> { this.state.description } </p>
                             <p className="card-text"> Priority: { priorities[this.state.priority] } </p>
-                            { this.state.completed == 0 ? (
+                            { this.state.completed === 0 ? (
                                 <p className="text-danger">Not completed </p>
                             ) : (
                                 <p className="text-success"> Completed </p>
@@ -116,7 +116,7 @@ class TodoItem extends Component {
                         Edit
                     </Button>
                     </div>
-                    <Dialog open={this.state.open} onClose={this.handleClose} fullWidth={1}>
+                    <Dialog open={this.state.open} onClose={this.handleClose} fullWidth={true}>
                         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                         <DialogContent>
                         <DialogContentText>

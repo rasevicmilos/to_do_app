@@ -6,7 +6,6 @@ export default function NonAuthenticatedRoute ({ component: Component, token, ..
     <Route
       { ...rest }
       render={props => {
-        console.log('TOKEN: ' + token);
         return token ? (
           <Redirect to="/home" />
         ) : (

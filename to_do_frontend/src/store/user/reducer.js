@@ -1,4 +1,4 @@
-import {LOGGED_IN, LOGGED_OUT, LOGGED_ME_IN} from './actionTypes';
+import { LOGGED_OUT, LOGGED_ME_IN} from './actionTypes';
 const initialState = null;
 
 const userReducer = (state = initialState, action) => {

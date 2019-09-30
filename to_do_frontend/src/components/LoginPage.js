@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoginApiService from '../apiServices/LoginApiService';
 import { connect } from 'react-redux';
 import { logIn } from '../store/user/actionCreators';
 
